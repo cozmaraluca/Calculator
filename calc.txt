@@ -1,0 +1,169 @@
+package ex3;
+
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+class Fereastra extends JFrame{
+    
+
+    
+    public Fereastra(String titlu){
+        super(titlu);
+        Toolkit t=Toolkit.getDefaultToolkit();
+        Dimension d=t.getScreenSize();
+        int h=d.height;
+        int w=d.width;
+        setSize(w/4,h/2);
+        setLocation(w/4,h/4);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
+    }
+
+
+}
+
+
+
+
+public class e3 {
+
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+
+ 
+        
+        JFrame f= new Fereastra("Calculator");
+        Container cont=f.getContentPane();
+        f.getContentPane().setLayout(new BoxLayout(cont, BoxLayout.Y_AXIS));
+        
+        
+        JPanel p1=new JPanel();        
+        JLabel lblOp1=new JLabel("Operand 1");
+        JTextField txtOp1=new JTextField(10);        
+        p1.add(lblOp1);
+        p1.add(txtOp1);  
+        
+        JPanel p2=new JPanel();        
+        JLabel lblOp2=new JLabel("Operand 2");
+        JTextField txtOp2=new JTextField(10);        
+        p2.add(lblOp2);
+        p2.add(txtOp2); 
+        
+        JPanel p3=new JPanel();        
+        JButton butonAdun=new JButton("Adunare");    
+        JButton butonScad=new JButton("Scadere");
+        p3.add(butonAdun);
+        p3.add(butonScad); 
+        
+        JPanel p4=new JPanel();        
+        JButton butonInmul=new JButton("Inmultire");    
+        JButton butonImp=new JButton("Impartire");
+        p4.add(butonInmul);
+        p4.add(butonImp); 
+        
+        
+        
+        
+        JPanel p5=new JPanel(); 
+        DefaultListModel<String> model = new DefaultListModel<>();
+        JList<String> txtRez = new JList<>(model);
+        p5.add(txtRez);  
+        txtRez.setPreferredSize(new Dimension(60,90));
+        
+        
+        JPanel p6=new JPanel();        
+        JButton butonClear=new JButton("Clear");    
+        p6.add(butonClear);
+        
+        butonInmul.addActionListener(new ActionListener(){ 
+            
+            
+            public void actionPerformed(ActionEvent e) {
+
+            	 int one=Integer.parseInt(txtOp1.getText());
+            	 int two=Integer.parseInt(txtOp2.getText());
+            	 int rez=one*two;
+            	  model.addElement(String.valueOf(rez));
+            	
+            	 }
+            });
+        
+ butonAdun.addActionListener(new ActionListener(){ 
+            
+            
+            public void actionPerformed(ActionEvent e) {
+
+            	 int one=Integer.parseInt(txtOp1.getText());
+            	 int two=Integer.parseInt(txtOp2.getText());
+            	 int rez=one+two;
+               	  model.addElement(String.valueOf(rez));
+            	 }
+            });
+        
+ 
+ 		butonScad.addActionListener(new ActionListener(){ 
+     
+     
+ 		public void actionPerformed(ActionEvent e) {
+
+    	 		int one=Integer.parseInt(txtOp1.getText());
+    	 		int two=Integer.parseInt(txtOp2.getText());
+    	 		int rez=one-two;
+               	  model.addElement(String.valueOf(rez));
+               
+     	 }
+     });
+ 		
+ 		
+ 		 butonImp.addActionListener(new ActionListener(){ 
+             
+             
+             public void actionPerformed(ActionEvent e) {
+
+             	 float one=Float.valueOf(txtOp1.getText());
+             	 float two=Float.valueOf(txtOp2.getText());
+             	 float rez=one/two;
+               	  model.addElement(String.valueOf(rez));
+             	 }
+             });
+ 		 
+ 		butonClear.addActionListener(new ActionListener(){ 
+            
+            
+            public void actionPerformed(ActionEvent e) {
+
+            	 txtOp1.setText(" ");
+            	 txtOp2.setText(" ");
+            		 txtRez.clearSelection();
+            	 }
+            });
+            
+        f.getContentPane().add(p1);
+        f.getContentPane().add(p2);
+        f.getContentPane().add(p3);
+        f.getContentPane().add(p4);
+        f.getContentPane().add(p5);
+        f.getContentPane().add(p6);
+
+        
+        
+            
+            
+        
+        f.setVisible(true);
+    }
+
+}
